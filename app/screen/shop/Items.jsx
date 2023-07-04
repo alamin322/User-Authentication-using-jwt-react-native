@@ -4,6 +4,7 @@ import { Button, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View
 import { styles } from '../../../style';
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 const ItemsPage = () => {
     const navigation = useNavigation();
@@ -13,21 +14,28 @@ const ItemsPage = () => {
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
 
+    const myAccessToken = useSelector(state => state.auth);
+    console.log("MyAccessToken: ", myAccessToken.access_token);
 
+    // For clear forms input
     const clearTextInput = () => {
         setTitle('');
         setDes('');
     };
 
-    // =========================== Retrive the information ==============================
+    // =========================== Retrive or Show the information ==============================
     useEffect(() => {
         fetchData();
     }, [])
 
     const fetchData = async () => {
         try {
-            const response = await axios.get("http://10.0.2.2:8000/list/")
-            console.log(response.data)
+            const response = await axios.get("http://10.0.2.2:8000/list/", {
+                headers: {
+                    Authorization: `Bearer ${myAccessToken.access_token}`,
+                },
+            })
+            // console.log(response.data)
             setData(response.data)
         } catch (e) {
             console.log("The error is: ", e)
@@ -37,7 +45,11 @@ const ItemsPage = () => {
     // Fetch all information to show in webpage after adding new data
     async function getAllInformation() {
         try {
-            const response = await axios.get('http://10.0.2.2:8000/list/');
+            const response = await axios.get('http://10.0.2.2:8000/list/', {
+                headers: {
+                    Authorization: `Bearer ${myAccessToken.access_token}`,
+                },
+            });
             setData(response.data);
         } catch (error) {
             console.log("Something is wrong");
@@ -49,7 +61,11 @@ const ItemsPage = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://10.0.2.2:8000/delete/${id}`);
+            await axios.delete(`http://10.0.2.2:8000/delete/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${myAccessToken.access_token}`,
+                },
+            });
             var newInformation = data.filter((item) => {
                 return item.id !== id;
             });

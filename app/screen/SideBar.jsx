@@ -17,8 +17,8 @@ const SideBar = ({ ...props }) => {
   const dispatch = useDispatch();
 
   const myData = useSelector(state => state.user);
-
   const myAccessToken = useSelector(state => state.auth);
+  // console.log("MyAccessToken: ", myAccessToken.access_token)
 
   const logIn_data = useSelector(state => state.userLogin.isLoggedIn);
 

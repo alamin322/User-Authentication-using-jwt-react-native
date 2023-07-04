@@ -11,9 +11,10 @@ const UpdateItem = ({ route }) => {
     const { itemId } = route.params;
     const [title, setTitle] = useState('');
     const [des, setDes] = useState('');
-    const [updateItemId, setItemId] = useState(null);
     const [data, setData] = useState([]);
 
+    
+    // Fetch the single data based on the id
     useEffect(() => {
         async function getSingleData() {
             try {
@@ -26,18 +27,19 @@ const UpdateItem = ({ route }) => {
             }
         }
         getSingleData();
-    }, [updateItemId]);
+    }, []);
 
-    // Fetch all information to show in webpage after adding new data
-    async function getAllInformation() {
-        try {
-            const response = await axios.get('http://10.0.2.2:8000/list/');
-            setData(response.data);
-        } catch (error) {
-            console.log("Something is wrong");
-        }
-    }
+    // // Fetch all information to show in webpage after adding new data
+    // async function getAllInformation() {
+    //     try {
+    //         const response = await axios.get('http://10.0.2.2:8000/list/');
+    //         setData(response.data);
+    //     } catch (error) {
+    //         console.log("Something is wrong");
+    //     }
+    // }
 
+    // Update the information based on the current id
     async function onFormSubmit_for_update() {
         try {
             await axios.put(`http://10.0.2.2:8000/update/${itemId}`, { title: title, description: des });
