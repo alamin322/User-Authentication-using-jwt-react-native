@@ -52,7 +52,7 @@ const ItemsPage = () => {
             });
             setData(response.data);
         } catch (error) {
-            console.log("Something is wrong");
+            console.log("Something is wrong: ", error);
         }
     }
 
@@ -79,7 +79,11 @@ const ItemsPage = () => {
     const addItemHandle = async () => {
         clearTextInput();
         try {
-            const response = await axios.post("http://10.0.2.2:8000/create/", { title: title, description: des });
+            const response = await axios.post("http://10.0.2.2:8000/create/", { title: title, description: des }, {
+                headers: {
+                    Authorization: `Bearer ${myAccessToken.access_token}`,
+                },
+            });
 
             console.log("Response data: ", response.data);
 
