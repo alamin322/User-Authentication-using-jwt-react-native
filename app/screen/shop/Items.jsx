@@ -19,7 +19,7 @@ const ItemsPage = () => {
         setDes('');
     };
 
-    // Retrive the information
+    // =========================== Retrive the information ==============================
     useEffect(() => {
         fetchData();
     }, [])
@@ -45,7 +45,7 @@ const ItemsPage = () => {
     }
 
 
-    // Delete functionality
+    // ============================ Delete functionality ===========================
 
     const handleDelete = async (id) => {
         try {
@@ -59,7 +59,7 @@ const ItemsPage = () => {
         }
     }
 
-    // Add functionality
+    // ========================= Add functionality =========================
     const addItemHandle = async () => {
         clearTextInput();
         try {
@@ -74,7 +74,7 @@ const ItemsPage = () => {
         }
     };
 
-    // For automatically updating the information
+    // For automatically updating the information when this page will be focused
     useFocusEffect(
         useCallback(() => {
             fetchData();
