@@ -1,8 +1,10 @@
 {
 	"info": {
-		"_postman_id": "382df6ed-5c36-4187-93b4-b3c9f52a28f7",
+		"_postman_id": "96cc1674-f89f-4ed0-8f9c-0f7befd30fec",
 		"name": "DjangoAuthAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27656154",
+		"_collection_link": "https://grey-firefly-858134.postman.co/workspace/React-Native~32d4cb81-adb6-43ec-8ce5-85fbe324da05/collection/27656154-96cc1674-f89f-4ed0-8f9c-0f7befd30fec?action=share&creator=27656154&source=collection_link"
 	},
 	"item": [
 		{
@@ -245,6 +247,60 @@
 						""
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"iphone 14 pro max\",\r\n    \"description\": \"this is iphone 14 pro max\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update data",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Show data",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
